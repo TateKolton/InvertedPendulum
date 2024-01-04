@@ -1,0 +1,12 @@
+../Core/Src/main.c:80:6:updatePosition	3
+../Core/Src/main.c:104:5:main	1
+../Core/Src/main.c:211:6:SystemClock_Config	4
+../Core/Src/main.c:261:13:MX_TIM2_Init	3
+../Core/Src/main.c:310:13:MX_TIM8_Init	7
+../Core/Src/main.c:390:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:425:13:MX_GPIO_Init	1
+../Core/Src/main.c:462:6:computeControlEffort	2
+../Core/Src/main.c:559:6:sendData	3
+../Core/Src/main.c:593:6:recieveData	1
+../Core/Src/main.c:616:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Src/main.c:633:6:Error_Handler	1
