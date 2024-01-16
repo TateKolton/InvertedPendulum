@@ -1,2 +1,1 @@
-../Core/Src/pendulum.c:14:6:stateFeedback	16	static
-../Core/Src/pendulum.c:20:6:updateControllers	16	static
+../Core/Src/pendulum.c:13:6:updateControllers	16	static

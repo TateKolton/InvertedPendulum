@@ -77,6 +77,7 @@ CopyDataInit:
   adds r3, r3, #4
 
 LoopCopyDataInit:
+
   adds r4, r0, r3
   cmp r4, r1
   bcc CopyDataInit

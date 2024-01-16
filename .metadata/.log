@@ -1,0 +1,28 @@
+!SESSION 2024-01-15 22:51:31.260 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-01-15 22:51:35.478
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-01-15 22:51:35.485
+!MESSAGE Log4j2 initialized with config file C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-01-15 22:51:37.570
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-01-15 22:52:17.702
+!MESSAGE Indexed 'STM32 Firmware' (37 sources, 145 headers) in 4.7 sec: 15,951 declarations; 85,294 references; 3 unresolved inclusions; 156 syntax errors; 172 unresolved names (0.17%)
+
+!ENTRY org.eclipse.core.resources 4 77 2024-01-15 22:52:21.515
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2024-01-15 22:52:21.515
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2024-01-15 22:52:21.515
+!MESSAGE C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\STM32 Firmware overlaps the location of another project: 'STM32 Firmware'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2024-01-15 22:52:21.515
+!MESSAGE Project is null
