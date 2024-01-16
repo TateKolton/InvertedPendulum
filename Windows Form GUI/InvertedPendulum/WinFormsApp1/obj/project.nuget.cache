@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9yB6h/a/H09FWLKFYocRBao11K/F4Dp2sjU9CLeNEadxnaziH4xQq17BHwpdDpWud3hq7iRN7Zlz7H1fdwkeNQ==",
+  "dgSpecHash": "Khn9mO9Ajqln3COSUPc3Q5Jep+Jtewi6dA+F8K6xdlMxFDD0amK7gfCdK4Mrx6gPoHgegvkEoFOUkYQohuHaeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\4_2023_Projects\\Inverted-Pendulum\\InvertedPendulum-20230809T034618Z-001\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
+  "projectFilePath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\5_2024_Projects\\2_Inverted-Pendulum\\InvertedPendulum\\Windows Form GUI\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tatek\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
     "C:\\Users\\tatek\\.nuget\\packages\\oxyplot.windowsforms\\2.1.2\\oxyplot.windowsforms.2.1.2.nupkg.sha512",

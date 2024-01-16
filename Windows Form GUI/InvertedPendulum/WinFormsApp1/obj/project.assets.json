@@ -359,11 +359,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\4_2023_Projects\\Inverted-Pendulum\\InvertedPendulum-20230809T034618Z-001\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectUniqueName": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\5_2024_Projects\\2_Inverted-Pendulum\\InvertedPendulum\\Windows Form GUI\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
       "projectName": "WinFormsApp1",
-      "projectPath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\4_2023_Projects\\Inverted-Pendulum\\InvertedPendulum-20230809T034618Z-001\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectPath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\5_2024_Projects\\2_Inverted-Pendulum\\InvertedPendulum\\Windows Form GUI\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
       "packagesPath": "C:\\Users\\tatek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\4_2023_Projects\\Inverted-Pendulum\\InvertedPendulum-20230809T034618Z-001\\InvertedPendulum\\WinFormsApp1\\obj\\",
+      "outputPath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\5_2024_Projects\\2_Inverted-Pendulum\\InvertedPendulum\\Windows Form GUI\\InvertedPendulum\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tatek\\AppData\\Roaming\\NuGet\\NuGet.Config",

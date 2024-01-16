@@ -19,7 +19,6 @@ namespace WinFormsApp1
     {
 
         private SerialPort serialPort = new SerialPort();
-        private SerialPort serialPortAcc = new SerialPort();
         private Stopwatch stopwatch = new Stopwatch();
         private Stopwatch stopwatch2 = new Stopwatch();
         private int maxSeconds = 15;
@@ -47,16 +46,19 @@ namespace WinFormsApp1
         private bool acquireData = false;
         private int fileIndex = 0;
         private StreamWriter dataStreamWriter;
-        private string K1, K2, I1, I2, D1, D2, Dz1, Dz2, A1;
+        private string K1, K2, I1, I2, D1, D2, Dz1, Dz2, A1, VL;
         double time = 0;
+        double val1, val2;
+        double offset = 0;
 
         ConcurrentQueue<Int32> dataQueue = new ConcurrentQueue<int>();
- 
+
 
         string serialDataString = "";
         bool connected;
         Int32 numByte_global = 0;
         int a_state = -1;
+        const double STEPS_TO_DEG = 0.04394531;
 
 
         public Form1()
@@ -70,7 +72,16 @@ namespace WinFormsApp1
         {
             if (!serialPort.IsOpen)
             {
+                serialPort.DataReceived += SerialPort_DataReceived;
+                btnConnectDevice.Text = "Disconnect Pendulum";
                 ConnectDevice();
+
+            }
+
+            else
+            {
+                btnConnectDevice.Text = "Connect Pendulum";
+                serialPort.Close();
             }
         }
 
@@ -78,30 +89,18 @@ namespace WinFormsApp1
         {
             try
             {
-                OpenSerialPort(serialPort, "COM3", 115200);
-                OpenSerialPort(serialPortAcc, "COM4", 9600);
+                OpenSerialPort(serialPort, "COM4", 115200);
                 startTime = DateTime.Now;
-
-                // Clear the serial port buffer by reading and discarding any existing data
-                //while (serialPort.BytesToRead > 0)
-                //{
-                //    serialPort.ReadLine();
-                //}
-
 
 
                 EnableControls(true); // Enable controls when the device is connected
-                MessageBox.Show("Serial port successfully opened. Device connected.");
+                if (serialPort.IsOpen)
+                    MessageBox.Show("Serial port successfully opened. Device connected.");
 
                 // Set the isConnected flag to true to indicate successful connection
                 isConnected = true;
                 stopwatch.Start();
                 serialPort.DiscardInBuffer();
-                serialPortAcc.DiscardInBuffer();
-                serialPort.DataReceived += SerialPort_DataReceived;
-                serialPortAcc.DataReceived += SerialPortAcc_DataRecieved;
-                timerAcc.Start();
-                timerAcc.Enabled = true;
 
                 // No need to start the timer here
             }
@@ -136,11 +135,12 @@ namespace WinFormsApp1
                 // Read the data from the serial port and parse the message
                 string message = serialPort.ReadLine();
                 string[] values = message.Split('A', 'Z');
+
+
                 if (values.Length == 3)
                 {
-                    double val1 = double.Parse(values[0]);
-                    double val2 = double.Parse(values[1]);
-
+                    val1 = double.Parse(values[0]) * STEPS_TO_DEG;
+                    val2 = double.Parse(values[1]) * STEPS_TO_DEG;
 
                     // Update the data array and reassign it to the series
 
@@ -165,92 +165,14 @@ namespace WinFormsApp1
 
         }
 
-        private void SerialPortAcc_DataRecieved(object sender, SerialDataReceivedEventArgs e)
-        {
-            int numBytes;
-            int newByte = 0;
-
-            numBytes = serialPortAcc.BytesToRead;
-
-            while (numBytes != 0)
-            {
-                newByte = serialPortAcc.ReadByte();
-                dataQueue.Enqueue(Convert.ToInt32(newByte));
-                numBytes = serialPortAcc.BytesToRead;
-            }
-
-        }
-
-        private void timerAcc_Tick_1(object sender, EventArgs e)
-        {
-            if (serialPortAcc.IsOpen)
-            {
-                int x, y, z = 0;
-                int currByte;
-
-                while (dataQueue.TryDequeue(out currByte))
-                {
-
-                    if (a_state == 0)
-                    {
-                        Ax.Text = currByte.ToString();
-                        a_state = 1;
-                    }
-                    else if (a_state == 1)
-                    {
-                        Ay.Text = currByte.ToString();
-                        a_state = 2;
-                    }
-                    else if (a_state == 2)
-                    {
-                        Az.Text = currByte.ToString();
-                        a_state = 3;
-                    }
-
-                    if (currByte == 255)
-                    {
-                        a_state = 0;
-                    }
-
-                }
-
-                getOrientation(Convert.ToInt32(Ax.Text), Convert.ToInt32(Ay.Text), Convert.ToInt32(Az.Text));
-            }
-        }
-
-        private void getOrientation(Int32 x, Int32 y, Int32 z)
-        {
-
-            double xnorm = (x - 125) / 25.0;
-            double ynorm = (y - 125) / 25.0;
-            double znorm = (z - 125) / 25.0;
-
-            double pitchRadian = Math.Atan2(xnorm, Math.Sqrt(ynorm * ynorm + znorm * znorm) + 0.001);
-            double Pitch = RadiansToDegrees(pitchRadian);
-
-            double rollRadian = Math.Atan2(ynorm, Math.Sqrt(xnorm * xnorm + znorm * znorm) + 0.001);
-            double Roll = RadiansToDegrees(rollRadian);
-
-            double thetaRadian = Math.Atan2(Math.Sqrt(xnorm * xnorm + ynorm * ynorm), znorm + 0.001);
-            double Theta = RadiansToDegrees(thetaRadian);
-
-            targetAngle.Text = Pitch.ToString();
-
-        }
-
-        private double RadiansToDegrees(double radians)
-        {
-            return radians * (180.0 / Math.PI);
-        }
-
         private void UpdateSeriesData(double val1, double val2)
         {
             double time = stopwatch.Elapsed.TotalSeconds;
 
 
             // Create new data points
-            OxyPlot.DataPoint pendulumDataPoint = new OxyPlot.DataPoint(time, val1);
-            OxyPlot.DataPoint motorArmDataPoint = new OxyPlot.DataPoint(time, val2);
+            OxyPlot.DataPoint pendulumDataPoint = new OxyPlot.DataPoint(time, val2);
+            OxyPlot.DataPoint motorArmDataPoint = new OxyPlot.DataPoint(time, val1);
 
             // Add the data points to the lists
             pendulumDataPoints.Add(pendulumDataPoint);
@@ -260,17 +182,15 @@ namespace WinFormsApp1
             pendulumAngleSeries.ItemsSource = pendulumDataPoints;
             motorArmAngleSeries.ItemsSource = motorArmDataPoints;
 
-            // Check if either value exceeds the bounds of -10 to 10
-            if (val1 < -10 || val1 > 10 || val2 < -10 || val2 > 10)
-            {
-                // Calculate the new Y-axis limits with 10% headroom
-                yAxisMinimum = -100;
-                yAxisMaximum = 100;
 
-                // Update the Y-axis limits in OxyPlot model
-                plotModel.Axes[1].Minimum = yAxisMinimum;
-                plotModel.Axes[1].Maximum = yAxisMaximum;
-            }
+            // Calculate the new Y-axis limits with 10% headroom
+            yAxisMinimum = Math.Min(-15, motorArmDataPoints.Min(point => point.Y));
+            yAxisMaximum = Math.Max(15, motorArmDataPoints.Max(point => point.Y));
+
+            // Update the Y-axis limits in OxyPlot model
+            plotModel.Axes[1].Minimum = yAxisMinimum;
+            plotModel.Axes[1].Maximum = yAxisMaximum;
+            
 
             // Adjust the X-axis dynamically based on t
             double xMin = (time < maxSeconds) ? 0 : (time - maxSeconds);
@@ -384,8 +304,6 @@ namespace WinFormsApp1
             if (serialPort.IsOpen)
             {
                 serialPort.DiscardInBuffer(); // Clear the serial port buffer
-                serialPortAcc.DiscardInBuffer();
-                serialPortAcc.Close();
                 serialPort.Close();
                 EnableControls(false); // Disable controls when the device is disconnected
 
@@ -401,9 +319,6 @@ namespace WinFormsApp1
 
             swingUp.Enabled = connected;
             swingDown.Enabled = connected;
-            zeroArm.Enabled = connected;
-            zeroPend.Enabled = connected;
-            swingUpImpulse.Enabled = connected;
             minus_sixty.Enabled = connected;
             plus_sixty.Enabled = connected;
             startButton.Enabled = connected;
@@ -412,38 +327,30 @@ namespace WinFormsApp1
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timerAcc.Stop(); // Stop the timer before closing the form
             DisconnectDevice(); // Close the serial connection before the form is closed
-        }
-
-
-        private void sendCommand()
-        {
-            if (serialPort.IsOpen)
-            {
-                try
-                {
-                    serialPort.Write(pcString + buttonState + "D");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error sending data through serial port: " + ex.Message);
-                }
-            }
         }
 
         private void sliderVals()
         {
-            Dz1 = mapVals(dz1.Value, 0, 30, 2, 3.25).ToString("F3");
-            Dz2 = mapVals(dz2.Value, 0, 30, 2, 3.25).ToString("F3");
-            D1 = mapVals(d1.Value, 0, 30, 0.02, 0.2).ToString("F3");
-            D2 = mapVals(d2.Value, 0, 30, 0.02, 0.2).ToString("F3");
-            K1 = mapVals(k1.Value, 0, 30, 0.1, 1).ToString("F3");
-            K2 = mapVals(k2.Value, 0, 30, 0.03, 0.3).ToString("F3");
-            I1 = mapVals(i1.Value, 0, 30, 0, 0.2).ToString("F3");
-            I2 = mapVals(i2.Value, 0, 30, 0, 0.2).ToString("F3");
+            int intDz1 = Convert.ToInt32(1000 * mapVals(dz1.Value, 0, 30, 2, 3.25));
+            int intD1 = Convert.ToInt32(1000 * mapVals(d1.Value, 0, 30, 0.02, 0.4));
+            int intD2 = Convert.ToInt32(1000 * mapVals(d2.Value, 0, 30, 0.02, 0.2));
+            int intK1 = Convert.ToInt32(1000 * mapVals(k1.Value, 0, 30, 0.2, 2));
+            int intK2 = Convert.ToInt32(1000 * mapVals(k2.Value, 0, 30, 0.03, 0.3));
+            int intI1 = Convert.ToInt32(1000 * mapVals(i1.Value, 0, 30, 0, 0.2));
+            int intI2 = Convert.ToInt32(1000 * mapVals(i2.Value, 0, 30, 0, 0.2));
 
+            // Convert to strings
+            Dz1 = intDz1.ToString();
+            D1 = intD1.ToString();
+            D2 = intD2.ToString();
+            K1 = intK1.ToString();
+            K2 = intK2.ToString();
+            I1 = intI1.ToString();
+            I2 = intI2.ToString();
+            VL = voltageLimit.Value.ToString();
         }
+
 
         private double mapVals(int sliderVal, double fromLow, double fromHigh, double toLow, double toHigh)
         {
@@ -455,13 +362,13 @@ namespace WinFormsApp1
         {
             sliderVals();
             dz1T.Text = Dz1;
-            dz2T.Text = Dz2;
             d1T.Text = D1;
             d2T.Text = D2;
             i1T.Text = I1;
             i2T.Text = I2;
             p1T.Text = K1;
             p2T.Text = K2;
+            voltageLimitText.Text = VL;
         }
 
         private void tuningMessage()
@@ -476,11 +383,9 @@ namespace WinFormsApp1
             messages.Add(I2);
             messages.Add(D2);
             messages.Add(Dz1);
-            messages.Add(Dz2);
-            messages.Add(targetAngle.Text);
-            messages.Add(buttonState);
+            messages.Add(VL);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 fullMessage += messages[i];
                 fullMessage += "A";
@@ -493,15 +398,23 @@ namespace WinFormsApp1
                 try
                 {
                     serialPort.Write(fullMessage);
-                    if (buttonState != "R")
-                    {
-                        commandFlag = false;
-                    }
 
-                    if (!commandFlag)
-                    {
-                        buttonState = "R";
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error sending data through serial port: " + ex.Message);
+                }
+            }
+        }
+
+        private void commandMessage()
+        {
+            if (serialPort.IsOpen)
+            {
+                try
+                {
+                    serialPort.Write(buttonState);
+
                 }
                 catch (Exception ex)
                 {
@@ -518,50 +431,45 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             buttonState = "A";
-            commandFlag = true;
-
+            commandMessage();
         }
 
 
         private void button4_Click(object sender, EventArgs e)
         {
             buttonState = "P";
-            commandFlag = true;
-
+            commandMessage();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             buttonState = "U";
-            commandFlag = true;
+            offset = val1;
+            commandMessage();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             buttonState = "D";
-            commandFlag = true;
-
+            commandMessage();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             buttonState = "W";
-            commandFlag = true;
-
+            commandMessage();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             buttonState = "Y";
-            commandFlag = true;
-
+            commandMessage();
         }
 
         private void plus_sixty_Click(object sender, EventArgs e)
         {
             buttonState = "J";
-            commandFlag = true;
-
+            commandMessage();
         }
 
         private void k1_Scroll(object sender, EventArgs e)
@@ -615,14 +523,6 @@ namespace WinFormsApp1
 
         }
 
-        private void dz2_Scroll(object sender, EventArgs e)
-        {
-            sliderVals();
-            dz2T.Text = Dz2;
-
-
-        }
-
         private void button1_Click_2(object sender, EventArgs e)
         {
             buttonState = "F";
@@ -657,6 +557,11 @@ namespace WinFormsApp1
             stopButton.Enabled = false;
         }
 
+        private void voltageLimit_Scroll(object sender, EventArgs e)
+        {
+            sliderVals();
+            voltageLimitText.Text = VL;
+        }
     }
 }
 
