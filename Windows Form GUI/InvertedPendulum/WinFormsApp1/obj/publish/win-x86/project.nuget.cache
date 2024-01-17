@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "IYzx9tgdO7Z0oANaGL2E8TAhOUDf8OsAxw7qSi3K9S2Gd950GOXU6c0Rwp7YYp93SfI4LO/5dLT+SEGDBrvL8A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tatek\\OneDrive\\Documents\\3_Engineering-Projects\\5_2024_Projects\\2_Inverted-Pendulum\\InvertedPendulum\\Windows Form GUI\\InvertedPendulum\\WinFormsApp1\\WinFormsApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tatek\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\oxyplot.windowsforms\\2.1.2\\oxyplot.windowsforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.20\\microsoft.netcore.app.runtime.win-x86.6.0.20.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.20\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.20.nupkg.sha512",
+    "C:\\Users\\tatek\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.20\\microsoft.aspnetcore.app.runtime.win-x86.6.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}

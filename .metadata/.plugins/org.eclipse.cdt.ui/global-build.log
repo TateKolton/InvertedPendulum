@@ -60,3 +60,73 @@ Finished building: default.size.stdout
  
 Finished building: STM32 Firmware.list
  
+12:02:49 **** Incremental Build of configuration Debug for project STM32 Firmware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32 Firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\STM32 Firmware\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32 Firmware.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32 Firmware.elf
+ 
+arm-none-eabi-size   STM32\ Firmware.elf 
+arm-none-eabi-objdump -h -S  STM32\ Firmware.elf  > "STM32 Firmware.list"
+   text	   data	    bss	    dec	    hex	filename
+  54212	    528	   6752	  61492	   f034	STM32 Firmware.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32 Firmware.list
+ 
+12:07:57 **** Incremental Build of configuration Debug for project STM32 Firmware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32 Firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\STM32 Firmware\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32 Firmware.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32 Firmware.elf
+ 
+arm-none-eabi-size   STM32\ Firmware.elf 
+arm-none-eabi-objdump -h -S  STM32\ Firmware.elf  > "STM32 Firmware.list"
+   text	   data	    bss	    dec	    hex	filename
+  54196	    528	   6752	  61476	   f024	STM32 Firmware.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32 Firmware.list
+ 
+12:09:06 **** Incremental Build of configuration Debug for project STM32 Firmware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32 Firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\STM32 Firmware\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32 Firmware.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32 Firmware.elf
+ 
+arm-none-eabi-size   STM32\ Firmware.elf 
+arm-none-eabi-objdump -h -S  STM32\ Firmware.elf  > "STM32 Firmware.list"
+   text	   data	    bss	    dec	    hex	filename
+  54196	    528	   6752	  61476	   f024	STM32 Firmware.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32 Firmware.list
+ 
+12:16:20 **** Incremental Build of configuration Debug for project STM32 Firmware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32 Firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\STM32 Firmware\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32 Firmware.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32 Firmware.elf
+ 
+arm-none-eabi-size   STM32\ Firmware.elf 
+arm-none-eabi-objdump -h -S  STM32\ Firmware.elf  > "STM32 Firmware.list"
+   text	   data	    bss	    dec	    hex	filename
+  54196	    528	   6752	  61476	   f024	STM32 Firmware.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32 Firmware.list
+ 
+12:19:16 **** Incremental Build of configuration Debug for project STM32 Firmware ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32 Firmware.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\tatek\OneDrive\Documents\3_Engineering-Projects\5_2024_Projects\2_Inverted-Pendulum\InvertedPendulum\STM32 Firmware\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32 Firmware.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32 Firmware.elf
+ 
+arm-none-eabi-size   STM32\ Firmware.elf 
+arm-none-eabi-objdump -h -S  STM32\ Firmware.elf  > "STM32 Firmware.list"
+   text	   data	    bss	    dec	    hex	filename
+  54196	    528	   6752	  61476	   f024	STM32 Firmware.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32 Firmware.list
+ 

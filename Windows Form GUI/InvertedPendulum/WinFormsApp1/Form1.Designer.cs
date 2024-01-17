@@ -59,13 +59,14 @@
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
-            stopButton = new Button();
-            startButton = new Button();
             label12 = new Label();
             voltageLimitText = new TextBox();
             voltageLimit = new TrackBar();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
+            controls = new GroupBox();
+            label13 = new Label();
+            plot = new GroupBox();
+            groupBox3 = new GroupBox();
+            ports = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)d1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)i1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)k1).BeginInit();
@@ -74,16 +75,17 @@
             ((System.ComponentModel.ISupportInitialize)k2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)voltageLimit).BeginInit();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            controls.SuspendLayout();
+            plot.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // swingUp
             // 
-            swingUp.Location = new Point(69, 319);
+            swingUp.Location = new Point(26, 49);
             swingUp.Margin = new Padding(4, 5, 4, 5);
             swingUp.Name = "swingUp";
-            swingUp.Size = new Size(203, 122);
+            swingUp.Size = new Size(218, 124);
             swingUp.TabIndex = 1;
             swingUp.TabStop = false;
             swingUp.Text = "Swing Up Pendulum";
@@ -92,10 +94,10 @@
             // 
             // swingDown
             // 
-            swingDown.Location = new Point(68, 453);
+            swingDown.Location = new Point(26, 198);
             swingDown.Margin = new Padding(4, 5, 4, 5);
             swingDown.Name = "swingDown";
-            swingDown.Size = new Size(203, 122);
+            swingDown.Size = new Size(218, 124);
             swingDown.TabIndex = 2;
             swingDown.TabStop = false;
             swingDown.Text = "Swing Down Pendulum";
@@ -104,10 +106,10 @@
             // 
             // btnConnectDevice
             // 
-            btnConnectDevice.Location = new Point(69, 151);
+            btnConnectDevice.Location = new Point(246, 29);
             btnConnectDevice.Margin = new Padding(4, 5, 4, 5);
             btnConnectDevice.Name = "btnConnectDevice";
-            btnConnectDevice.Size = new Size(203, 155);
+            btnConnectDevice.Size = new Size(215, 55);
             btnConnectDevice.TabIndex = 9;
             btnConnectDevice.TabStop = false;
             btnConnectDevice.Text = "Connect Device";
@@ -126,7 +128,7 @@
             // 
             // minus_sixty
             // 
-            minus_sixty.Location = new Point(68, 592);
+            minus_sixty.Location = new Point(26, 372);
             minus_sixty.Margin = new Padding(4, 5, 4, 5);
             minus_sixty.Name = "minus_sixty";
             minus_sixty.Size = new Size(99, 43);
@@ -138,7 +140,7 @@
             // 
             // plus_sixty
             // 
-            plus_sixty.Location = new Point(176, 592);
+            plus_sixty.Location = new Point(133, 372);
             plus_sixty.Margin = new Padding(4, 5, 4, 5);
             plus_sixty.Name = "plus_sixty";
             plus_sixty.Size = new Size(96, 43);
@@ -154,7 +156,7 @@
             plotView.Margin = new Padding(4, 5, 4, 5);
             plotView.Name = "plotView";
             plotView.PanCursor = Cursors.Hand;
-            plotView.Size = new Size(1465, 1085);
+            plotView.Size = new Size(1013, 976);
             plotView.TabIndex = 14;
             plotView.Text = "plotView1";
             plotView.ZoomHorizontalCursor = Cursors.SizeWE;
@@ -163,7 +165,7 @@
             // 
             // d1
             // 
-            d1.Location = new Point(692, 117);
+            d1.Location = new Point(638, 115);
             d1.Margin = new Padding(4, 5, 4, 5);
             d1.Maximum = 30;
             d1.Name = "d1";
@@ -175,7 +177,7 @@
             // 
             // i1
             // 
-            i1.Location = new Point(528, 117);
+            i1.Location = new Point(474, 115);
             i1.Margin = new Padding(4, 5, 4, 5);
             i1.Maximum = 30;
             i1.Name = "i1";
@@ -186,7 +188,7 @@
             // 
             // k1
             // 
-            k1.Location = new Point(377, 117);
+            k1.Location = new Point(323, 115);
             k1.Margin = new Padding(4, 5, 4, 5);
             k1.Maximum = 30;
             k1.Name = "k1";
@@ -198,7 +200,7 @@
             // 
             // d2
             // 
-            d2.Location = new Point(692, 536);
+            d2.Location = new Point(638, 534);
             d2.Margin = new Padding(4, 5, 4, 5);
             d2.Maximum = 30;
             d2.Name = "d2";
@@ -210,7 +212,7 @@
             // 
             // i2
             // 
-            i2.Location = new Point(528, 536);
+            i2.Location = new Point(474, 534);
             i2.Margin = new Padding(4, 5, 4, 5);
             i2.Maximum = 30;
             i2.Name = "i2";
@@ -222,7 +224,7 @@
             // 
             // k2
             // 
-            k2.Location = new Point(377, 536);
+            k2.Location = new Point(323, 534);
             k2.Margin = new Padding(4, 5, 4, 5);
             k2.Maximum = 30;
             k2.Name = "k2";
@@ -234,7 +236,7 @@
             // 
             // dz1
             // 
-            dz1.Location = new Point(843, 306);
+            dz1.Location = new Point(789, 304);
             dz1.Margin = new Padding(4, 5, 4, 5);
             dz1.Maximum = 30;
             dz1.Name = "dz1";
@@ -246,7 +248,7 @@
             // 
             // p1T
             // 
-            p1T.Location = new Point(351, 374);
+            p1T.Location = new Point(297, 372);
             p1T.Margin = new Padding(4, 5, 4, 5);
             p1T.Name = "p1T";
             p1T.Size = new Size(88, 31);
@@ -254,7 +256,7 @@
             // 
             // i1T
             // 
-            i1T.Location = new Point(502, 374);
+            i1T.Location = new Point(448, 372);
             i1T.Margin = new Padding(4, 5, 4, 5);
             i1T.Name = "i1T";
             i1T.Size = new Size(88, 31);
@@ -262,7 +264,7 @@
             // 
             // d1T
             // 
-            d1T.Location = new Point(667, 374);
+            d1T.Location = new Point(613, 372);
             d1T.Margin = new Padding(4, 5, 4, 5);
             d1T.Name = "d1T";
             d1T.Size = new Size(88, 31);
@@ -270,7 +272,7 @@
             // 
             // d2T
             // 
-            d2T.Location = new Point(667, 792);
+            d2T.Location = new Point(613, 790);
             d2T.Margin = new Padding(4, 5, 4, 5);
             d2T.Name = "d2T";
             d2T.Size = new Size(88, 31);
@@ -278,7 +280,7 @@
             // 
             // i2T
             // 
-            i2T.Location = new Point(502, 792);
+            i2T.Location = new Point(448, 790);
             i2T.Margin = new Padding(4, 5, 4, 5);
             i2T.Name = "i2T";
             i2T.Size = new Size(88, 31);
@@ -286,7 +288,7 @@
             // 
             // p2T
             // 
-            p2T.Location = new Point(351, 792);
+            p2T.Location = new Point(297, 790);
             p2T.Margin = new Padding(4, 5, 4, 5);
             p2T.Name = "p2T";
             p2T.Size = new Size(88, 31);
@@ -294,7 +296,7 @@
             // 
             // dz1T
             // 
-            dz1T.Location = new Point(814, 566);
+            dz1T.Location = new Point(760, 564);
             dz1T.Margin = new Padding(4, 5, 4, 5);
             dz1T.Name = "dz1T";
             dz1T.Size = new Size(91, 31);
@@ -303,7 +305,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(386, 87);
+            label2.Location = new Point(332, 85);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(22, 25);
@@ -313,7 +315,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(386, 506);
+            label3.Location = new Point(332, 504);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(22, 25);
@@ -323,7 +325,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(537, 506);
+            label4.Location = new Point(483, 504);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(17, 25);
@@ -333,7 +335,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(537, 87);
+            label5.Location = new Point(483, 85);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(17, 25);
@@ -343,7 +345,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(701, 87);
+            label6.Location = new Point(647, 85);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(25, 25);
@@ -353,7 +355,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(701, 506);
+            label7.Location = new Point(647, 504);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(25, 25);
@@ -363,33 +365,33 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(480, 47);
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(426, 45);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(143, 35);
+            label8.Size = new Size(123, 32);
             label8.TabIndex = 40;
             label8.Text = "Pendulum";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(505, 459);
+            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(451, 457);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(93, 35);
+            label9.Size = new Size(82, 32);
             label9.TabIndex = 41;
             label9.Text = "Motor";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(797, 261);
+            label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(743, 259);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(139, 35);
+            label10.Size = new Size(123, 32);
             label10.TabIndex = 42;
             label10.Text = "Deadzone";
             // 
@@ -397,51 +399,27 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Trebuchet MS", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(1068, 32);
+            label11.Location = new Point(825, 32);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(520, 44);
             label11.TabIndex = 43;
             label11.Text = "Rotational Inverted Pendulum";
             // 
-            // stopButton
-            // 
-            stopButton.Location = new Point(101, 697);
-            stopButton.Margin = new Padding(4, 5, 4, 5);
-            stopButton.Name = "stopButton";
-            stopButton.Size = new Size(143, 43);
-            stopButton.TabIndex = 46;
-            stopButton.TabStop = false;
-            stopButton.Text = "End Acquisition";
-            stopButton.UseVisualStyleBackColor = true;
-            stopButton.Click += button1_Click_3;
-            // 
-            // startButton
-            // 
-            startButton.Location = new Point(101, 643);
-            startButton.Margin = new Padding(4, 5, 4, 5);
-            startButton.Name = "startButton";
-            startButton.Size = new Size(143, 43);
-            startButton.TabIndex = 45;
-            startButton.TabStop = false;
-            startButton.Text = "Acquire Data";
-            startButton.UseVisualStyleBackColor = true;
-            startButton.Click += button2_Click_1;
-            // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(944, 262);
+            label12.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(890, 260);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(186, 35);
+            label12.Size = new Size(157, 32);
             label12.TabIndex = 49;
             label12.Text = "Voltage Limit";
             // 
             // voltageLimitText
             // 
-            voltageLimitText.Location = new Point(988, 568);
+            voltageLimitText.Location = new Point(934, 566);
             voltageLimitText.Margin = new Padding(4, 5, 4, 5);
             voltageLimitText.Name = "voltageLimitText";
             voltageLimitText.Size = new Size(91, 31);
@@ -449,7 +427,7 @@
             // 
             // voltageLimit
             // 
-            voltageLimit.Location = new Point(1010, 304);
+            voltageLimit.Location = new Point(956, 302);
             voltageLimit.Margin = new Padding(4, 5, 4, 5);
             voltageLimit.Maximum = 21;
             voltageLimit.Minimum = 2;
@@ -460,65 +438,92 @@
             voltageLimit.Value = 6;
             voltageLimit.Scroll += voltageLimit_Scroll;
             // 
-            // groupBox1
+            // controls
             // 
-            groupBox1.Controls.Add(d1);
-            groupBox1.Controls.Add(label12);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(plus_sixty);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(minus_sixty);
-            groupBox1.Controls.Add(k1);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(btnConnectDevice);
-            groupBox1.Controls.Add(voltageLimitText);
-            groupBox1.Controls.Add(swingDown);
-            groupBox1.Controls.Add(swingUp);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(i1);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(voltageLimit);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(k2);
-            groupBox1.Controls.Add(stopButton);
-            groupBox1.Controls.Add(i2);
-            groupBox1.Controls.Add(startButton);
-            groupBox1.Controls.Add(d2);
-            groupBox1.Controls.Add(dz1);
-            groupBox1.Controls.Add(label10);
-            groupBox1.Controls.Add(p1T);
-            groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(i1T);
-            groupBox1.Controls.Add(label8);
-            groupBox1.Controls.Add(d1T);
-            groupBox1.Controls.Add(p2T);
-            groupBox1.Controls.Add(i2T);
-            groupBox1.Controls.Add(d2T);
-            groupBox1.Controls.Add(dz1T);
-            groupBox1.Location = new Point(1599, 83);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1158, 924);
-            groupBox1.TabIndex = 50;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Pendulum Controls";
+            controls.Controls.Add(label13);
+            controls.Controls.Add(d1);
+            controls.Controls.Add(label12);
+            controls.Controls.Add(label7);
+            controls.Controls.Add(plus_sixty);
+            controls.Controls.Add(label6);
+            controls.Controls.Add(minus_sixty);
+            controls.Controls.Add(k1);
+            controls.Controls.Add(label5);
+            controls.Controls.Add(voltageLimitText);
+            controls.Controls.Add(swingDown);
+            controls.Controls.Add(swingUp);
+            controls.Controls.Add(label4);
+            controls.Controls.Add(i1);
+            controls.Controls.Add(label3);
+            controls.Controls.Add(voltageLimit);
+            controls.Controls.Add(label2);
+            controls.Controls.Add(k2);
+            controls.Controls.Add(i2);
+            controls.Controls.Add(d2);
+            controls.Controls.Add(dz1);
+            controls.Controls.Add(label10);
+            controls.Controls.Add(p1T);
+            controls.Controls.Add(label9);
+            controls.Controls.Add(i1T);
+            controls.Controls.Add(label8);
+            controls.Controls.Add(d1T);
+            controls.Controls.Add(p2T);
+            controls.Controls.Add(i2T);
+            controls.Controls.Add(d2T);
+            controls.Controls.Add(dz1T);
+            controls.Location = new Point(1101, 207);
+            controls.Name = "controls";
+            controls.Size = new Size(1091, 924);
+            controls.TabIndex = 50;
+            controls.TabStop = false;
+            controls.Text = "Pendulum Controls";
             // 
-            // groupBox2
+            // label13
             // 
-            groupBox2.Controls.Add(plotView);
-            groupBox2.Location = new Point(46, 83);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1524, 1125);
-            groupBox2.TabIndex = 51;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Real-Time Plot";
+            label13.AutoSize = true;
+            label13.Location = new Point(32, 339);
+            label13.Name = "label13";
+            label13.Size = new Size(157, 25);
+            label13.TabIndex = 50;
+            label13.Text = "Reference Tracking";
+            // 
+            // plot
+            // 
+            plot.Controls.Add(plotView);
+            plot.Location = new Point(12, 83);
+            plot.Name = "plot";
+            plot.Size = new Size(1070, 1048);
+            plot.TabIndex = 51;
+            plot.TabStop = false;
+            plot.Text = "Real-Time Plot";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(btnConnectDevice);
+            groupBox3.Controls.Add(ports);
+            groupBox3.Location = new Point(1101, 83);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(483, 100);
+            groupBox3.TabIndex = 52;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Device Settings";
+            // 
+            // ports
+            // 
+            ports.FormattingEnabled = true;
+            ports.Location = new Point(26, 41);
+            ports.Name = "ports";
+            ports.Size = new Size(196, 33);
+            ports.TabIndex = 10;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2781, 1228);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            ClientSize = new Size(2205, 1149);
+            Controls.Add(groupBox3);
+            Controls.Add(plot);
+            Controls.Add(controls);
             Controls.Add(label11);
             Controls.Add(label1);
             Margin = new Padding(4, 5, 4, 5);
@@ -533,9 +538,10 @@
             ((System.ComponentModel.ISupportInitialize)k2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)voltageLimit).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
+            controls.ResumeLayout(false);
+            controls.PerformLayout();
+            plot.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -572,13 +578,14 @@
         private Label label9;
         private Label label10;
         private Label label11;
-        private Button stopButton;
-        private Button startButton;
         private OxyPlot.WindowsForms.PlotView plotView1;
         private Label label12;
         private TextBox voltageLimitText;
         private TrackBar voltageLimit;
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
+        private GroupBox controls;
+        private GroupBox plot;
+        private GroupBox groupBox3;
+        private ComboBox ports;
+        private Label label13;
     }
 }

@@ -40,7 +40,6 @@ namespace WinFormsApp1
         private List<OxyPlot.DataPoint> pendulumDataPoints = new List<OxyPlot.DataPoint>();
         private List<OxyPlot.DataPoint> motorArmDataPoints = new List<OxyPlot.DataPoint>();
 
-        private bool isConnected = false;
         private bool startFlag = false;
         private bool commandFlag = false;
         private bool acquireData = false;
@@ -50,6 +49,8 @@ namespace WinFormsApp1
         double time = 0;
         double val1, val2;
         double offset = 0;
+
+        bool connectedFlag = false;
 
         ConcurrentQueue<Int32> dataQueue = new ConcurrentQueue<int>();
 
@@ -64,23 +65,38 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
-            EnableControls(false);
             InitializePlot();
             populateTextBoxes();
+
+            controls.Enabled = false;
+
+            ports.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+
+            if (ports.Items.Count == 0)
+            {
+                ports.Text = "NO COM PORTS";
+            }
+
         }
         private void btnConnectDevice_Click_1(object sender, EventArgs e)
         {
             if (!serialPort.IsOpen)
             {
                 serialPort.DataReceived += SerialPort_DataReceived;
-                btnConnectDevice.Text = "Disconnect Pendulum";
                 ConnectDevice();
 
+                if (serialPort.IsOpen)
+                {
+                    btnConnectDevice.Text = "Disconnect Pendulum";
+                    controls.Enabled = true;
+                }
             }
 
             else
             {
                 btnConnectDevice.Text = "Connect Pendulum";
+                controls.Enabled = false;
+                DisconnectDevice();
                 serialPort.Close();
             }
         }
@@ -89,20 +105,14 @@ namespace WinFormsApp1
         {
             try
             {
-                OpenSerialPort(serialPort, "COM4", 115200);
+                connectedFlag = true;
+                OpenSerialPort(serialPort, ports.Text, 115200);
                 startTime = DateTime.Now;
 
-
-                EnableControls(true); // Enable controls when the device is connected
                 if (serialPort.IsOpen)
                     MessageBox.Show("Serial port successfully opened. Device connected.");
 
-                // Set the isConnected flag to true to indicate successful connection
-                isConnected = true;
                 stopwatch.Start();
-                serialPort.DiscardInBuffer();
-
-                // No need to start the timer here
             }
             catch (Exception ex)
             {
@@ -110,27 +120,17 @@ namespace WinFormsApp1
             }
         }
 
-        private void SaveDataToCsv(double val1, double val2)
-        {
-            string fileName = "test" + fileIndex + ".csv";
-
-            using (StreamWriter writer = new StreamWriter(fileName, true)) // Append to the existing file
-            {
-                if (fileIndex == 1)
-                {
-                    writer.WriteLine("Time, Pendulum Angle, Motor Arm Angle");
-                }
-
-                double time = stopwatch.Elapsed.TotalSeconds;
-                writer.WriteLine($"{time}, {val1}, {val2}");
-            } // The using block automatically closes the file when it's done
-        }
-
-
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
+
+                // Clear port on initial connection
+                if (connectedFlag)
+                {
+                    serialPort.DiscardInBuffer();
+                    connectedFlag = false;
+                }
 
                 // Read the data from the serial port and parse the message
                 string message = serialPort.ReadLine();
@@ -190,7 +190,7 @@ namespace WinFormsApp1
             // Update the Y-axis limits in OxyPlot model
             plotModel.Axes[1].Minimum = yAxisMinimum;
             plotModel.Axes[1].Maximum = yAxisMaximum;
-            
+
 
             // Adjust the X-axis dynamically based on t
             double xMin = (time < maxSeconds) ? 0 : (time - maxSeconds);
@@ -205,6 +205,8 @@ namespace WinFormsApp1
 
             // Invalidate the plot to trigger a redraw
             plotView.InvalidatePlot(true);
+
+
         }
 
 
@@ -242,7 +244,7 @@ namespace WinFormsApp1
         private void InitializePlot()
         {
             // Set up the OxyPlot model
-            plotModel = new PlotModel { Title = "Real-Time Plot" };
+            plotModel = new PlotModel { Title = "Pendulum & Motor Angles (deg) vs Time (s)" };
 
             // Set up the X-axis as time in seconds using a LinearAxis
             plotModel.Axes.Add(new LinearAxis
@@ -305,25 +307,9 @@ namespace WinFormsApp1
             {
                 serialPort.DiscardInBuffer(); // Clear the serial port buffer
                 serialPort.Close();
-                EnableControls(false); // Disable controls when the device is disconnected
-
-                // Clear the data point lists
-                pendulumDataPoints.Clear();
-                motorArmDataPoints.Clear();
             }
         }
 
-        // Enable or disable controls based on the connection status
-        private void EnableControls(bool connected)
-        {
-
-            swingUp.Enabled = connected;
-            swingDown.Enabled = connected;
-            minus_sixty.Enabled = connected;
-            plus_sixty.Enabled = connected;
-            startButton.Enabled = connected;
-            stopButton.Enabled = connected;
-        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -527,34 +513,6 @@ namespace WinFormsApp1
         {
             buttonState = "F";
             commandFlag = true;
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            fileIndex++;
-            string fileName = "test" + fileIndex + ".csv";
-            dataStreamWriter = new StreamWriter(fileName, true); // Use the class-level StreamWriter
-
-            // Enable the Stop button and disable the Start button
-            startButton.Enabled = false;
-            stopButton.Enabled = true;
-            acquireData = true;
-        }
-
-        private void button1_Click_3(object sender, EventArgs e)
-        {
-            acquireData = false;
-            // Close the StreamWriter
-            if (dataStreamWriter != null)
-            {
-                dataStreamWriter.Close();
-                dataStreamWriter.Dispose();
-                dataStreamWriter = null;
-            }
-
-            // Enable the Start button and disable the Stop button
-            startButton.Enabled = true;
-            stopButton.Enabled = false;
         }
 
         private void voltageLimit_Scroll(object sender, EventArgs e)
